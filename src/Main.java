@@ -8,10 +8,10 @@ public class Main {
     private static String originalText = "";
     
     public static void main(String[] args) {
-        System.out.println("===============================================");
-        System.out.println("|    GRAPH-BASED TEXT SUMMARIZATION SYSTEM    |");
-        System.out.println("|    (Dijkstra's Algorithm for Centrality)    |");
-        System.out.println("===============================================");
+        System.out.println("╔═════════════════════════════════════════════╗");
+        System.out.println("║    GRAPH-BASED TEXT SUMMARIZATION SYSTEM    ║");
+        System.out.println("║    (Dijkstra's Algorithm for Centrality)    ║");
+        System.out.println("╚═════════════════════════════════════════════╝");
         
         boolean running = true;
         while (running) {
@@ -42,45 +42,43 @@ public class Main {
                     break;
                 case 0:
                     running = false;
-                    System.out.println("==========================");
-                    System.out.println("|    Terima kasih ^_^    |");
-                    System.out.println("==========================");
+                    System.out.println("╔═════════════════════════════════════════════╗");
+                    System.out.println("║               Terima kasih ^_^              ║");
+                    System.out.println("╚═════════════════════════════════════════════╝");
                     break;
                 default:
-                    System.out.println("==========================");
-                    System.out.println("|  Pilihan tidak valid!  |");
-                    System.out.println("==========================");
-                    System.out.println("             |            ");
-                    System.out.println("             |            ");
-                    System.out.println("             v            ");
+                    System.out.println("╠═════════════════════════════════════════════╣");
+                    System.out.println("║             Pilihan tidak valid             ║");
+                    System.out.println("╚══════════════════════╦══════════════════════╝");
+                    System.out.println("                       ║");
+                    System.out.println("                       v");
             }
         }
         scanner.close();
     }
     
     private static void displayMenu() {
-        System.out.println("==========================");
-        System.out.println("|   === MENU UTAMA ===   |");
-        System.out.println("==========================");
-        System.out.println("| 1. Input Teks          |");
-        System.out.println("| 2. Generate Ringkasan  |");
-        System.out.println("| 3. Tampilkan Graph     |");
-        System.out.println("| 4. Cari Kalimat        |");
-        System.out.println("| 5. BFS Traversal       |");
-        System.out.println("| 6. Statistik           |");
-        System.out.println("| 7. Find TOP 1 (Stack)  |");
-        System.out.println("| 0. Keluar              |");
-        System.out.println("=========================|");
-        System.out.print("| Pilih: ");
+        System.out.println("╔═════════════════════════════════════════════╗");
+        System.out.println("║             === MENU UTAMA ===              ║");
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║ 1. Input Teks                               ║");
+        System.out.println("║ 2. Generate Ringkasan                       ║");
+        System.out.println("║ 3. Tampilkan Graph                          ║");
+        System.out.println("║ 4. Cari Kalimat                             ║");
+        System.out.println("║ 5. BFS Traversal                            ║");
+        System.out.println("║ 6. Statistik                                ║");
+        System.out.println("║ 7. Find TOP 1 (Stack)                       ║");
+        System.out.println("║ 0. Keluar                                   ║");
+        System.out.println("╚═════════════════════════════════════════════╝");
+        System.out.println("╔═════════════════════════════════════════════╗");
+        System.out.print("║ Pilih: ");
     }
     
     private static void inputText() {
-        System.out.println("=========================|");
-        System.out.println("                         |");
-        System.out.println("                         v");
-        System.out.println("==================================================");
-        System.out.println("|   Masukkan teks (akhiri dengan baris kosong)   |");
-        System.out.println("==================================================");
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║  Masukkan teks (akhiri dengan baris kosong) ║");
+        System.out.println("╚═════════════════════════════════════════════╝");
+        System.out.print("=> ");
         
         StringBuilder sb = new StringBuilder();
         scanner.nextLine();
@@ -93,27 +91,25 @@ public class Main {
         originalText = sb.toString().trim();
         
         if (originalText.isEmpty()) {
-            System.out.println("==========================");
-            System.out.println("|      Teks kosong!      |");
-            System.out.println("==========================");
-            System.out.println("             |            ");
-            System.out.println("             |            ");
-            System.out.println("             v            ");
+            System.out.println("╔═════════════════════════════════════════════╗");
+            System.out.println("║                 Teks kosong                 ║");
+            System.out.println("╚══════════════════════╦══════════════════════╝");
+            System.out.println("                       ║");
+            System.out.println("                       v");
             return;
         }
         
         processingText(originalText);
-        System.out.println("==================================================");
-        System.out.println("|          [OK] Teks berhasil diproses!          |");
-        System.out.println("==================================================");
-        System.out.println("| - Jumlah kalimat: " + sentences.size());
-        System.out.println("| - Jumlah kata: " + countTotalWords());
-        System.out.println("| - Graph edges: " + graph.getTotalEdges());
-        System.out.println("=================================================|");
-        System.out.println("                                                 |");
-        System.out.println("             -------------------------------------");
-        System.out.println("             |            ");
-        System.out.println("             v            ");
+        System.out.println("║ [OK] Teks berhasil diproses!                ║");
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║ - Jumlah kalimat: " + sentences.size());
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║ - Jumlah kata: " + countTotalWords());
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║ - Graph edges: " + graph.getTotalEdges());
+        System.out.println("╚══════════════════════╦══════════════════════╝");
+        System.out.println("                       ║");
+        System.out.println("                       v");
     }
     
     private static int countTotalWords() {
@@ -145,13 +141,19 @@ public class Main {
     
     private static void generateSummary() {
         if (graph == null || sentences.size() == 0) {
-            System.out.println("\nBelum ada teks! Input teks dulu.");
+            System.out.println("╠═════════════════════════════════════════════╣");
+            System.out.println("║      Belum ada teks! Input teks dulu        ║");
+            System.out.println("╚══════════════════════╦══════════════════════╝");
+            System.out.println("                       ║");
+            System.out.println("                       v");
             return;
         }
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║          === GENERATE RINGKASAN ===         ║");
+        System.out.println("╠═════════════════════════════════════════════╣");
         
-        System.out.println("\n=== GENERATE RINGKASAN ===\n");
-        
-        System.out.println("--- TOP 5 KEYWORDS ---");
+        System.out.println("║            --- TOP 5 KEYWORDS ---           ║");
+        System.out.println("╠═════════════════════════════════════════════╣");
         Linkedlist keywords = extractKeywords();
         displayTopKeywords(keywords, 5);
         
@@ -308,8 +310,9 @@ public class Main {
         
         for (int i = 0; i < limit; i++) {
             WordCount wc = (WordCount) keywords.get(i);
-            System.out.println((i+1) + ". " + wc.word + " (" + wc.count + "x)");
+            System.out.println("║ "+(i+1) + ". " + wc.word + " (" + wc.count + "x)");
         }
+        System.out.println("╚═════════════════════════════════════════════╝");
     }
     
     private static void displayGraph() {
