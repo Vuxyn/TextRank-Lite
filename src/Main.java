@@ -37,6 +37,9 @@ public class Main {
                 case 6:
                     displayStatistics();
                     break;
+                case 7:
+                    findTop1WithStack();
+                    break;
                 case 0:
                     running = false;
                     System.out.println("==========================");
@@ -65,6 +68,7 @@ public class Main {
         System.out.println("| 4. Cari Kalimat        |");
         System.out.println("| 5. BFS Traversal       |");
         System.out.println("| 6. Statistik           |");
+        System.out.println("| 7. Find TOP 1 (Stack)  |");
         System.out.println("| 0. Keluar              |");
         System.out.println("=========================|");
         System.out.print("| Pilih: ");
@@ -406,6 +410,58 @@ public class Main {
             this.word = word;
             this.count = count;
         }
+    }
+
+    private static void findTop1WithStack() {
+        if (sentences == null || sentences.size() == 0) {
+            System.out.println("\nBelum ada teks!");
+            return;
+        }
+        
+        System.out.println("\n=== MENCARI TOP 1 KALIMAT MENGGUNAKAN STACK ===");
+        
+        NavigationStack scoreStack = new NavigationStack();
+        
+        for (int i = 0; i < sentences.size(); i++) {
+            Sentence sent = (Sentence) sentences.get(i);
+            Dijkstra dijkstra = new Dijkstra(graph, sent.id, sentences);
+            int totalDistance = dijkstra.getTotalDistance();
+            
+            sent.distance = totalDistance;
+            scoreStack.push(sent);
+        }
+        
+        NavigationStack tempStack = new NavigationStack();
+        
+        Sentence top1 = null;
+        int minScore = Integer.MAX_VALUE;
+        
+        while (!scoreStack.isEmpty()) {
+            Sentence current = scoreStack.peek(); 
+            current = scoreStack.pop(); 
+            
+            if (current.distance < minScore) {
+                minScore = current.distance;
+                top1 = current;
+            }
+            
+            tempStack.push(current); 
+        }
+        
+        while (!tempStack.isEmpty()) {
+            Sentence s = tempStack.pop();
+            scoreStack.push(s);
+        }
+        
+        // Display hasil
+        System.out.println("\n╔════════════════════════════════════════════════╗");
+        System.out.println("║           TOP 1 KALIMAT TERPENTING             ║");
+        System.out.println("╚════════════════════════════════════════════════╝");
+        System.out.println("\nID: SENT-" + top1.id);
+        System.out.println("Centrality Score: " + minScore + " (Lower = more important)");
+        System.out.println("\nText:");
+        System.out.println("\"" + top1.text + "\"");
+        System.out.println("\n════════════════════════════════════════════════");
     }
 }
 
