@@ -1,4 +1,3 @@
-
 public class TextGraph {
     
     private Linkedlist sentences;
@@ -21,8 +20,10 @@ public class TextGraph {
     }
 
     public void buildGraph() {
-        System.out.println("Building graph...");
-        System.out.println("Calculating similarities between sentences...");
+        System.out.println("==================================================");
+        System.out.println("| Building graph...                              |");
+        System.out.println("| Calculating similarities between sentences...  |");
+        System.out.println("==================================================");
         
         // Loop untuk setiap pasangan kalimat
         for (int i = 0; i < numNodes; i++) {
