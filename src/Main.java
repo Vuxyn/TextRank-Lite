@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("╔═════════════════════════════════════════════╗");
         System.out.println("║    GRAPH-BASED TEXT SUMMARIZATION SYSTEM    ║");
-        System.out.println("║    (Dijkstra's Algorithm for Centrality)    ║");
+        System.out.println("║                 TEXTRANK-LITE               ║");
         System.out.println("╚═════════════════════════════════════════════╝");
         
         boolean running = true;
@@ -19,26 +19,19 @@ public class Main {
             int choice = getIntInput();
             
             switch (choice) {
-                case 1:
-                    inputText();
+                case 1: inputText();
                     break;
-                case 2:
-                    generateSummary();
+                case 2: generateSummary();
                     break;
-                case 3:
-                    displayGraph();
+                case 3: displayGraph();
                     break;
-                case 4:
-                    searchSentence();
+                case 4: searchSentence();
                     break;
-                case 5:
-                    exploreBFS();
+                case 5: exploreBFS();
                     break;
-                case 6:
-                    displayStatistics();
+                case 6: displayStatistics();
                     break;
-                case 7:
-                    findTop1WithStack();
+                case 7: findTop1WithStack();
                     break;
                 case 0:
                     running = false;
@@ -47,7 +40,7 @@ public class Main {
                     System.out.println("╚═════════════════════════════════════════════╝");
                     break;
                 default:
-                    System.out.println("╠═════════════════════════════════════════════╣");
+                    System.out.println("╔═════════════════════════════════════════════╗");
                     System.out.println("║             Pilihan tidak valid             ║");
                     System.out.println("╚══════════════════════╦══════════════════════╝");
                     System.out.println("                       ║");
@@ -70,12 +63,11 @@ public class Main {
         System.out.println("║ 7. Find TOP 1 (Stack)                       ║");
         System.out.println("║ 0. Keluar                                   ║");
         System.out.println("╚═════════════════════════════════════════════╝");
-        System.out.println("╔═════════════════════════════════════════════╗");
-        System.out.print("║ Pilih: ");
+        System.out.print("  Pilih: ");
     }
     
     private static void inputText() {
-        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("╔═════════════════════════════════════════════╗");
         System.out.println("║  Masukkan teks (akhiri dengan baris kosong) ║");
         System.out.println("╚═════════════════════════════════════════════╝");
         System.out.print("=> ");
@@ -102,11 +94,9 @@ public class Main {
         processingText(originalText);
         System.out.println("║ [OK] Teks berhasil diproses!                ║");
         System.out.println("╠═════════════════════════════════════════════╣");
-        System.out.println("║ - Jumlah kalimat: " + sentences.size());
-        System.out.println("╠═════════════════════════════════════════════╣");
-        System.out.println("║ - Jumlah kata: " + countTotalWords());
-        System.out.println("╠═════════════════════════════════════════════╣");
-        System.out.println("║ - Graph edges: " + graph.getTotalEdges());
+        System.out.println(" - Jumlah kalimat: " + sentences.size());
+        System.out.println(" - Jumlah kata: " + countTotalWords());
+        System.out.println(" - Graph edges: " + graph.getTotalEdges());
         System.out.println("╚══════════════════════╦══════════════════════╝");
         System.out.println("                       ║");
         System.out.println("                       v");
@@ -141,17 +131,16 @@ public class Main {
     
     private static void generateSummary() {
         if (graph == null || sentences.size() == 0) {
-            System.out.println("╠═════════════════════════════════════════════╣");
+            System.out.println("╔═════════════════════════════════════════════╗");
             System.out.println("║      Belum ada teks! Input teks dulu        ║");
             System.out.println("╚══════════════════════╦══════════════════════╝");
             System.out.println("                       ║");
             System.out.println("                       v");
             return;
         }
-        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("╔═════════════════════════════════════════════╗");
         System.out.println("║          === GENERATE RINGKASAN ===         ║");
         System.out.println("╠═════════════════════════════════════════════╣");
-        
         System.out.println("║            --- TOP 5 KEYWORDS ---           ║");
         System.out.println("╠═════════════════════════════════════════════╣");
         Linkedlist keywords = extractKeywords();
@@ -177,7 +166,7 @@ public class Main {
                 preview = preview.substring(0, 47) + "...";
             }
             System.out.println((i+1) + ". SENT-" + ss.getSentence().id + 
-                             " (Score: " + (int)ss.getCentralityScore() + ") - " + preview);
+                             " (Score: " + (int) ss.getCentralityScore() + ") - " + preview);
         }
         
         System.out.println("\n--- RINGKASAN (TOP 3 KALIMAT) ---");
@@ -213,13 +202,13 @@ public class Main {
     
     private static Linkedlist extractKeywords() {
         String[] stopwordsArray = {
-            // English
+    
             "a", "an", "and", "are", "as", "at", "be", "by", "for", "from",
             "has", "he", "in", "is", "it", "its", "of", "on", "that", "the",
             "to", "was", "will", "with", "can", "have", "this", "but", "or",
             "been", "had", "their", "which", "they", "were", "we", "us", "his",
             "her", "she", "our", "am", "very", "more", "about", "than", "also",
-            // Indonesian
+       
             "yang", "dan", "di", "ke", "dari", "dengan", "untuk", "pada", "dalam",
             "ini", "itu", "adalah", "atau", "juga", "akan", "oleh", "tidak",
             "ada", "dapat", "telah", "sudah", "sedang", "lebih", "hanya", "bisa",
