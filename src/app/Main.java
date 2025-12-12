@@ -15,6 +15,8 @@ public class Main {
     private static Linkedlist sentences;
     private static NavigationStack navStack;
     private static String originalText = "";
+    private static final int MAX_WIDTH = 70;
+    private static final int TYPING_MS = 10;
     
     public static void main(String[] args) {
         System.out.println("╔═════════════════════════════════════════════╗");
@@ -181,7 +183,7 @@ public class Main {
         System.out.println("╚══════════════════════════════════════════════");
         
         System.out.println("╔═════════════════════════════════════════════╗");
-        System.out.println("║          RINGKASAN (TOP 3 KALIMAT)          ║");
+        System.out.println("║                   RINGKASAN                 ║");
         System.out.println("╚═════════════════════════════════════════════╝");
         
         int topN = Math.min(3, sentences.size());
@@ -209,7 +211,7 @@ public class Main {
             }
         }
         
-        System.out.println(summary.toString());
+        typeText(summary.toString());
         System.out.println("╔═════════════════════════════════════════════╗");
         System.out.println("║ [INFO] Ringkasan: " + topN + "/" + sentences.size() + " kalimat               ║");
         System.out.println("╚══════════════════════╦══════════════════════╝");
@@ -522,6 +524,33 @@ public class Main {
         System.out.println("╚══════════════════════╦═══════════════════════");
         System.out.println("                       ║");
         System.out.println("                       v");
+    }
+
+    private static void sleep(int ms) {
+        try { Thread.sleep(ms); } 
+        catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+    }
+
+    private static void typeText(String text) {
+        String[] words = text.split(" ");
+        int lineLen = 0;
+        
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (lineLen + word.length() + 1 > MAX_WIDTH) {
+                System.out.println();
+                lineLen = 0;
+            }
+            for (char c : word.toCharArray()) {
+                System.out.print(c);
+                sleep(TYPING_MS);
+            }
+            if (i < words.length - 1) {
+                System.out.print(" ");
+                lineLen += word.length() + 1;
+            }
+        }
+        System.out.println();
     }
 }
 

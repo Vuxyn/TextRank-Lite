@@ -99,26 +99,26 @@ java -cp bin Main
 
 ```
 TextRank-Lite/
-├── src/
-│   ├── Main.java              # Main application with menu interface
-│   ├── TextGraph.java         # Graph construction and operations
-│   ├── Sentence.java          # Sentence representation
-│   ├── Edge.java              # Graph edge representation
-│   ├── Dijkstra.java          # Shortest path algorithm
-│   ├── Searcher.java          # Linear search functionality
-│   ├── Sorter.java            # Sorting algorithms (merge sort)
-│   ├── NavigationStack.java   # Stack implementation
-│   ├── Queue.java             # Queue implementation
-│   ├── Linkedlist.java        # Custom linked list
-│   ├── SentenceScore.java     # Sentence scoring
-│   └── algorithm/             # Algorithm utilities
-│   └── graph/                 # Graph utilities
-│   └── model/                 # Data models
-│   └── structures/            # Data structures
-│   └── utils/                 # Utility functions
+├── .gitignore
+├── README.md
 ├── bin/                       # Compiled class files
-├── lib/                       # External libraries (if any)
-└── README.md                  # This file
+└── src/
+    ├── app/
+    │   └── Main.java          # Main application with menu interface
+    ├── algorithms/
+    │   ├── Dijkstra.java      # Shortest path algorithm
+    │   ├── Searcher.java      # Linear search functionality
+    │   └── Sorter.java        # Sorting algorithms (merge sort)
+    ├── graph/
+    │   ├── Edge.java          # Graph edge representation
+    │   └── TextGraph.java     # Graph construction and operations
+    ├── nlp/
+    │   ├── Sentence.java      # Sentence representation
+    │   └── SentenceScore.java # Sentence scoring
+    └── structures/
+        ├── Linkedlist.java    # Custom linked list
+        ├── NavigationStack.java # Stack implementation
+        └── Queue.java         # Queue implementation
 ```
 
 ## Algorithm Details
@@ -138,16 +138,18 @@ TextRank-Lite/
 - Stopword filtering (bilingual: English + Indonesian)
 - Minimum word length filtering
 
-## Contributing
+## Contributors
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+1. I Kadek Mahesa Permana Putra	F1D02410052
+2. Muhammad Ravi Rayvansyah	   F1D02410078
+3. Fadila Rosidatul A’la			F1D02410042
+4. Istiqomah Virginia			   F1D02410116
+5. Nurhidayah Maulidia			   F1D02410022
+6. Islam Ahmed Fouad Abunima	   F1D02411003
+7. Mohanad R. M. Abumattar		   F1D02411002
+
 
 ## License
-
 This project is open source and available under the MIT License.
 
 ## Academic Context
