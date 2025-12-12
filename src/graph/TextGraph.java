@@ -57,20 +57,23 @@ public class TextGraph {
     }
 
     public void displayGraph() {
-        System.out.println("Graph Adjancency List");
-        System.out.println("=".repeat(50));
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║            Graph Adjancency List            ║");
+        System.out.println("╠═════════════════════════════════════════════╝");
         
         for (int i = 0; i < numNodes; i++) {
-            System.out.print("SENT-" + i + " → ");
+            System.out.print("║ SENT " + i + " = ");
             
             Linkedlist edges = (Linkedlist) adjacencyList.get(i);
             
             if (edges.isEmpty()) {
-                System.out.println("(no edges)");
+                System.out.println("╠═════════════════════════════════════════════╗");
+                System.out.println("║                  No Edges                   ║");
+                System.out.println("╚═════════════════════════════════════════════╝");
             } else {
                 for (int j = 0; j < edges.size(); j++) {
                     Edge e = (Edge) edges.get(j);
-                    System.out.print("SENT-" + e.toNode + "(" + e.weight + ")");
+                    System.out.print("SENT " + e.toNode + " (" + e.weight + ")");
                     
                     if (j < edges.size() - 1) {
                         System.out.print(", ");
@@ -79,10 +82,16 @@ public class TextGraph {
                 System.out.println();
             }
         }
+        System.out.println("╚══════════════════════════════════════════════");
         
-        System.out.println("\nGraph Statistics:");
-        System.out.println("   - Total nodes: " + numNodes);
-        System.out.println("   - Total edges: " + getTotalEdges());
+        System.out.println("╔═════════════════════════════════════════════╗");
+        System.out.println("║              Graph Statistics:              ║");
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║ - Total nodes: " + numNodes);
+        System.out.println("║ - Total edges: " + getTotalEdges());
+        System.out.println("╚══════════════════════╦══════════════════════╝");
+        System.out.println("                       ║");
+        System.out.println("                       v");
     }
 
     public int getTotalEdges(){

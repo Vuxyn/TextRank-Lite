@@ -1,10 +1,9 @@
 package app;
-import java.util.Scanner;
-
 import algorithms.Dijkstra;
 import algorithms.Searcher;
 import algorithms.Sorter;
 import graph.TextGraph;
+import java.util.Scanner;
 import nlp.Sentence;
 import nlp.SentenceScore;
 import structures.Linkedlist;
@@ -70,7 +69,7 @@ public class Main {
         System.out.println("║ 4. Cari Kalimat                             ║");
         System.out.println("║ 5. BFS Traversal                            ║");
         System.out.println("║ 6. Statistik                                ║");
-        System.out.println("║ 7. Find TOP 1 (Stack)                       ║");
+        System.out.println("║ 7. Find TOP 1                               ║");
         System.out.println("║ 0. Keluar                                   ║");
         System.out.println("╚═════════════════════════════════════════════╝");
         System.out.print("  Pilih: ");
@@ -155,8 +154,9 @@ public class Main {
         System.out.println("╠═════════════════════════════════════════════╣");
         Linkedlist keywords = extractKeywords();
         displayTopKeywords(keywords, 5);
-        
-        System.out.println("\n--- CENTRALITY SCORES ---");
+        System.out.println("╔═════════════════════════════════════════════╗");
+        System.out.println("║              CENTRALITY SCORES              ║");
+        System.out.println("╠═════════════════════════════════════════════╝");
         Linkedlist scores = new Linkedlist();
         
         for (int i = 0; i < sentences.size(); i++) {
@@ -178,8 +178,11 @@ public class Main {
             System.out.println((i+1) + ". SENT-" + ss.getSentence().id + 
                              " (Score: " + (int) ss.getCentralityScore() + ") - " + preview);
         }
+        System.out.println("╚══════════════════════════════════════════════");
         
-        System.out.println("\n--- RINGKASAN (TOP 3 KALIMAT) ---");
+        System.out.println("╔═════════════════════════════════════════════╗");
+        System.out.println("║          RINGKASAN (TOP 3 KALIMAT)          ║");
+        System.out.println("╚═════════════════════════════════════════════╝");
         
         int topN = Math.min(3, sentences.size());
         Linkedlist topSentences = new Linkedlist();
@@ -206,8 +209,12 @@ public class Main {
             }
         }
         
-        System.out.println("\n" + summary.toString());
-        System.out.println("\n[INFO] Ringkasan: " + topN + "/" + sentences.size() + " kalimat");
+        System.out.println(summary.toString());
+        System.out.println("╔═════════════════════════════════════════════╗");
+        System.out.println("║ [INFO] Ringkasan: " + topN + "/" + sentences.size() + " kalimat               ║");
+        System.out.println("╚══════════════════════╦══════════════════════╝");
+        System.out.println("                       ║");
+        System.out.println("                       v");
     }
     
     private static Linkedlist extractKeywords() {
@@ -316,7 +323,11 @@ public class Main {
     
     private static void displayGraph() {
         if (graph == null) {
-            System.out.println("\nBelum ada graph!");
+            System.out.println("╠═════════════════════════════════════════════╣");
+            System.out.println("║               Belum ada graph               ║");
+            System.out.println("╚══════════════════════╦══════════════════════╝");
+            System.out.println("                       ║");
+            System.out.println("                       v");
             return;
         }
         
@@ -325,60 +336,98 @@ public class Main {
     
     private static void searchSentence() {
         if (sentences == null || sentences.size() == 0) {
-            System.out.println("\nBelum ada kalimat!");
+            System.out.println("╠═════════════════════════════════════════════╣");
+            System.out.println("║              Belum ada kalimat              ║");
+            System.out.println("╚══════════════════════╦══════════════════════╝");
+            System.out.println("                       ║");
+            System.out.println("                       v");
             return;
         }
-        
-        System.out.println("\n=== PENCARIAN KALIMAT ===");
+
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║          === PENCARIAN KALIMAT ===          ║");
+        System.out.println("╠═════════════════════════════════════════════╣");
         scanner.nextLine();
-        System.out.print("Masukkan kata kunci: ");
+        System.out.print("║ Masukkan kata kunci: ");
         String keyword = scanner.nextLine();
         
         Linkedlist results = Searcher.linearSearchByKeyword(sentences, keyword);
         
         if (results.size() == 0) {
-            System.out.println("Tidak ditemukan.");
+            System.out.println("╚═════════════════════════════════════════════╝");
+            System.out.println("╠═════════════════════════════════════════════╣");
+            System.out.println("║                Tidak ditemukan              ║");
+            System.out.println("╚══════════════════════╦══════════════════════╝");
+            System.out.println("                       ║");
+            System.out.println("                       v");
         } else {
-            System.out.println("\nDitemukan " + results.size() + " kalimat:");
+            System.out.println("╚═════════════════════════════════════════════╝");
+            System.out.println("╔═════════════════════════════════════════════╗");
+            System.out.println("║ Ditemukan " + results.size() + " kalimat:                        ║");
+            System.out.println("╠═════════════════════════════════════════════╝");
             for (int i = 0; i < results.size(); i++) {
                 Sentence s = (Sentence) results.get(i);
-                System.out.println((i+1) + ". SENT-" + s.id + ": " + s.text);
+                System.out.println("║ "+(i+1) + ". SENT-" + s.id + ": " + s.text);
             }
+            System.out.println("╚══════════════════════╦═══════════════════════");
+            System.out.println("                       ║");
+            System.out.println("                       v");
         }
     }
     
     private static void exploreBFS() {
         if (graph == null) {
-            System.out.println("\nBelum ada graph!");
+            System.out.println("╠═════════════════════════════════════════════╣");
+            System.out.println("║               Belum ada graph               ║");
+            System.out.println("╚══════════════════════╦══════════════════════╝");
+            System.out.println("                       ║");
+            System.out.println("                       v");
             return;
         }
         
-        System.out.println("\n=== BFS TRAVERSAL ===");
-        System.out.print("ID kalimat awal (0-" + (sentences.size() - 1) + "): ");
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║            === BFS TRAVERSAL ===            ║");
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.print("║ ID kalimat awal (0-" + (sentences.size() - 1) + "): ");
         int startId = getIntInput();
         
         if (startId < 0 || startId >= sentences.size()) {
-            System.out.println("ID tidak valid!");
+            System.out.println("╠═════════════════════════════════════════════╣");
+            System.out.println("║                ID tidak valid               ║");
+            System.out.println("╚══════════════════════╦══════════════════════╝");
+            System.out.println("                       ║");
+            System.out.println("                       v");
             return;
         }
         
         Linkedlist bfsResult = graph.bfsTraversal(startId);
-        
-        System.out.println("\nUrutan kunjungan:");
+        System.out.println("╚═════════════════════════════════════════════╝");
+        System.out.println("╔═════════════════════════════════════════════╗");
+        System.out.println("║               Urutan kunjungan              ║");
+        System.out.println("╠═════════════════════════════════════════════╝");
         for (int i = 0; i < bfsResult.size(); i++) {
             int id = (int) bfsResult.get(i);  
             Sentence s = (Sentence) sentences.get(id);
-            System.out.println((i+1) + ". SENT-" + id + ": " + s.text);
+            System.out.println("║ "+(i+1) + ". SENT-" + id + ": " + s.text);
         }
+        System.out.println("╚══════════════════════╦═══════════════════════");
+        System.out.println("                       ║");
+        System.out.println("                       v");
     }
     
     private static void displayStatistics() {
         if (sentences == null || sentences.size() == 0) {
-            System.out.println("\nBelum ada data!");
+            System.out.println("╠═════════════════════════════════════════════╣");
+            System.out.println("║                Belum ada data               ║");
+            System.out.println("╚══════════════════════╦══════════════════════╝");
+            System.out.println("                       ║");
+            System.out.println("                       v");
             return;
         }
-        
-        System.out.println("\n=== STATISTIK TEKS ===");
+
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║            === STATISTIK TEKS ===           ║");
+        System.out.println("╠═════════════════════════════════════════════╣");
         
         int totalWords = 0;
         for (int i = 0; i < sentences.size(); i++) {
@@ -386,14 +435,17 @@ public class Main {
             totalWords += s.words.size();
         }
         
-        System.out.println("Total kalimat: " + sentences.size());
-        System.out.println("Total kata: " + totalWords);
-        System.out.println("Rata-rata kata/kalimat: " + (totalWords / sentences.size()));
-        
+        System.out.println("║ Total kalimat: " + sentences.size());
+        System.out.println("║ Total kata: " + totalWords);
+        System.out.println("║ Rata-rata kata/kalimat: " + (totalWords / sentences.size()));
+
         if (graph != null) {
-            System.out.println("Total nodes: " + graph.getNumNodes());
-            System.out.println("Total edges: " + graph.getTotalEdges());
+            System.out.println("║ Total nodes: " + graph.getNumNodes());
+            System.out.println("║ Total edges: " + graph.getTotalEdges());
         }
+        System.out.println("╚══════════════════════╦══════════════════════╝");
+        System.out.println("                       ║");
+        System.out.println("                       v");
     }
     
     private static int getIntInput() {
@@ -416,11 +468,17 @@ public class Main {
 
     private static void findTop1WithStack() {
         if (sentences == null || sentences.size() == 0) {
-            System.out.println("\nBelum ada teks!");
+            System.out.println("╠═════════════════════════════════════════════╣");
+            System.out.println("║                Belum ada data               ║");
+            System.out.println("╚══════════════════════╦══════════════════════╝");
+            System.out.println("                       ║");
+            System.out.println("                       v");
             return;
         }
-        
-        System.out.println("\n=== MENCARI TOP 1 KALIMAT MENGGUNAKAN STACK ===");
+
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║   MENCARI TOP 1 KALIMAT MENGGUNAKAN STACK   ║");
+        System.out.println("╠═════════════════════════════════════════════╣");
         
         NavigationStack scoreStack = new NavigationStack();
         
@@ -455,15 +513,15 @@ public class Main {
             scoreStack.push(s);
         }
         
-        // Display hasil
-        System.out.println("\n╔════════════════════════════════════════════════╗");
-        System.out.println("║           TOP 1 KALIMAT TERPENTING             ║");
-        System.out.println("╚════════════════════════════════════════════════╝");
-        System.out.println("\nID: SENT-" + top1.id);
-        System.out.println("Centrality Score: " + minScore + " (Lower = more important)");
-        System.out.println("\nText:");
+        System.out.println("║ ID: SENT-" + top1.id);
+        System.out.println("║ Centrality Score: " + minScore);
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║ Text:                                       ║");
+        System.out.println("╠═════════════════════════════════════════════╝");
         System.out.println("\"" + top1.text + "\"");
-        System.out.println("\n════════════════════════════════════════════════");
+        System.out.println("╚══════════════════════╦═══════════════════════");
+        System.out.println("                       ║");
+        System.out.println("                       v");
     }
 }
 
