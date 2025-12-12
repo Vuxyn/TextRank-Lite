@@ -1,3 +1,5 @@
+package structures;
+
 public class Queue {
     private QueueNode front;
     private QueueNode rear;

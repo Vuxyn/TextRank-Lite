@@ -1,6 +1,8 @@
+package graph;
+
 public class Edge {
-    int toNode;
-    int weight;
+    public int toNode;
+    public int weight;
 
     public Edge(int toNode, int weight){
         this.toNode = toNode;

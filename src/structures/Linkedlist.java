@@ -1,3 +1,5 @@
+package structures;
+
 public class Linkedlist {
     private Node head;
     private Node tail;

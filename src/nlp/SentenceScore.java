@@ -1,3 +1,5 @@
+package nlp;
+
 public class SentenceScore {
     private Sentence sentence;
     private double centralityScore;

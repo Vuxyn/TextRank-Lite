@@ -1,12 +1,15 @@
+package nlp;
+import structures.Linkedlist;
+
 public class Sentence {
-    int id;
-    String text;
-    Linkedlist words;
+    public int id;
+    public String text;
+    public Linkedlist words;
 
     //dijkstra
-    int distance;
-    boolean visited;
-    Sentence prev;
+    public int distance;
+    public boolean visited;
+    public Sentence prev;
 
     public Sentence(int id, String text){
         this.id = id;

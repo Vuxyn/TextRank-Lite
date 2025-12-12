@@ -1,3 +1,10 @@
+package algorithms;
+
+import graph.Edge;
+import graph.TextGraph;
+import nlp.Sentence;
+import structures.Linkedlist;
+
 public class Dijkstra {
     
     private TextGraph graph;

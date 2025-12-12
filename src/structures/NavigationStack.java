@@ -1,3 +1,7 @@
+package structures;
+
+import nlp.Sentence;
+
 public class NavigationStack {
     private StackNode top;
     private int size;

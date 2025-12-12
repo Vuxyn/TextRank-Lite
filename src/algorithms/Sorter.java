@@ -1,3 +1,9 @@
+package algorithms;
+
+import nlp.Sentence;
+import nlp.SentenceScore;
+import structures.Linkedlist;
+
 public class Sorter {
     
     public static Linkedlist mergeSortByScore(Linkedlist list) {

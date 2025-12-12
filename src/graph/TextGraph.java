@@ -1,3 +1,9 @@
+package graph;
+
+import nlp.Sentence;
+import structures.Linkedlist;
+import structures.Queue;
+
 public class TextGraph {
     
     private Linkedlist sentences;

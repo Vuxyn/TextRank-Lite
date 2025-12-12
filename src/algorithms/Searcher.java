@@ -1,3 +1,9 @@
+package algorithms;
+
+import nlp.Sentence;
+import nlp.SentenceScore;
+import structures.Linkedlist;
+
 public class Searcher {
 
     public static Sentence linearSearchById(Linkedlist list, int targetId){
