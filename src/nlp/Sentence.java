@@ -74,9 +74,4 @@ public class Sentence {
     }
 
     public int getWordCount(){ return words.size(); }
-
-    @Override
-    public String toString() {
-        return "SENT-" + id + ": " + text;
-    }
 }

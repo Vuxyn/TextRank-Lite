@@ -13,7 +13,7 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static TextGraph graph;
     private static Linkedlist sentences;
-    private static NavigationStack navStack;
+    //private static NavigationStack navStack;
     private static String originalText = "";
     private static final int MAX_WIDTH = 70;
     private static final int TYPING_MS = 10;
@@ -83,15 +83,23 @@ public class Main {
         System.out.println("╚═════════════════════════════════════════════╝");
         System.out.print("=> ");
         
-        StringBuilder sb = new StringBuilder();
+        Linkedlist lines = new Linkedlist();
+        //StringBuilder sb = new StringBuilder();
         scanner.nextLine();
         
         String line;
         while (!(line = scanner.nextLine()).trim().isEmpty()) {
-            sb.append(line).append(" ");
+            //sb.append(line).append(" ");
+            lines.add(line);
         }
         
-        originalText = sb.toString().trim();
+        String text = "";
+        for(int i = 0; i < lines.size(); i++){
+            text += (String) lines.get(i);
+        }
+
+        originalText = text.trim();
+        //originalText = sb.toString().trim();
         
         if (originalText.isEmpty()) {
             System.out.println("╔═════════════════════════════════════════════╗");
@@ -137,7 +145,7 @@ public class Main {
         graph = new TextGraph(sentences);
         graph.buildGraph();
         
-        navStack = new NavigationStack();
+        //navStack = new NavigationStack();
     }
     
     private static void generateSummary() {
@@ -195,23 +203,23 @@ public class Main {
         
         topSentences = Sorter.sortByOriginalId(topSentences);
         
-        StringBuilder summary = new StringBuilder();
+        String summary = "";
         for (int i = 0; i < topSentences.size(); i++) {
             SentenceScore ss = (SentenceScore) topSentences.get(i);
-            summary.append(ss.getSentence().text);
+            summary += ss.getSentence().text;
             
             if (!ss.getSentence().text.endsWith(".") && 
                 !ss.getSentence().text.endsWith("!") && 
                 !ss.getSentence().text.endsWith("?")) {
-                summary.append(".");
+                summary += ".";
             }
             
             if (i < topSentences.size() - 1) {
-                summary.append(" ");
+                summary += " ";
             }
         }
         
-        typeText(summary.toString());
+        typeText(summary);
         System.out.println("╔═════════════════════════════════════════════╗");
         System.out.println("║ [INFO] Ringkasan: " + topN + "/" + sentences.size() + " kalimat               ║");
         System.out.println("╚══════════════════════╦══════════════════════╝");
@@ -227,6 +235,7 @@ public class Main {
             "to", "was", "will", "with", "can", "have", "this", "but", "or",
             "been", "had", "their", "which", "they", "were", "we", "us", "his",
             "her", "she", "our", "am", "very", "more", "about", "than", "also",
+            "each",
        
             "yang", "dan", "di", "ke", "dari", "dengan", "untuk", "pada", "dalam",
             "ini", "itu", "adalah", "atau", "juga", "akan", "oleh", "tidak",
@@ -349,29 +358,66 @@ public class Main {
         System.out.println("╠═════════════════════════════════════════════╣");
         System.out.println("║          === PENCARIAN KALIMAT ===          ║");
         System.out.println("╠═════════════════════════════════════════════╣");
-        scanner.nextLine();
-        System.out.print("║ Masukkan kata kunci: ");
-        String keyword = scanner.nextLine();
+        System.out.println("║ 1. Cari berdasarkan Keyword (Linear Search) ║");
+        System.out.println("║ 2. Cari berdasarkan ID (Binary Search)      ║");
+        System.out.println("╚═════════════════════════════════════════════╝");
+        System.out.print("  Pilih metode pencarian: ");
         
-        Linkedlist results = Searcher.linearSearchByKeyword(sentences, keyword);
+        int searchMethod = getIntInput();
         
-        if (results.size() == 0) {
-            System.out.println("╚═════════════════════════════════════════════╝");
-            System.out.println("╠═════════════════════════════════════════════╣");
-            System.out.println("║                Tidak ditemukan              ║");
-            System.out.println("╚══════════════════════╦══════════════════════╝");
-            System.out.println("                       ║");
-            System.out.println("                       v");
-        } else {
-            System.out.println("╚═════════════════════════════════════════════╝");
-            System.out.println("╔═════════════════════════════════════════════╗");
-            System.out.println("║ Ditemukan " + results.size() + " kalimat:                        ║");
-            System.out.println("╠═════════════════════════════════════════════╝");
-            for (int i = 0; i < results.size(); i++) {
-                Sentence s = (Sentence) results.get(i);
-                System.out.println("║ "+(i+1) + ". SENT-" + s.id + ": " + s.text);
+        if (searchMethod == 1) {
+            scanner.nextLine();
+            System.out.print("║ Masukkan kata kunci: ");
+            String keyword = scanner.nextLine();
+            
+            Linkedlist results = Searcher.linearSearchByKeyword(sentences, keyword);
+            
+            if (results.size() == 0) {
+                System.out.println("╔═════════════════════════════════════════════╗");
+                System.out.println("║                Tidak ditemukan              ║");
+                System.out.println("╚══════════════════════╦══════════════════════╝");
+                System.out.println("                       ║");
+                System.out.println("                       v");
+            } else {
+                System.out.println("╔═════════════════════════════════════════════╗");
+                System.out.println("║ Ditemukan " + results.size() + " kalimat:                        ║");
+                System.out.println("╠═════════════════════════════════════════════╝");
+                for (int i = 0; i < results.size(); i++) {
+                    Sentence s = (Sentence) results.get(i);
+                    System.out.println("║ "+(i+1) + ". SENT-" + s.id + ": " + s.text);
+                }
+                System.out.println("╚══════════════════════╦═══════════════════════");
+                System.out.println("                       ║");
+                System.out.println("                       v");
             }
-            System.out.println("╚══════════════════════╦═══════════════════════");
+            
+        } else if (searchMethod == 2) {
+            // BINARY SEARCH BY ID
+            System.out.print("║ Masukkan ID kalimat (0-" + (sentences.size()-1) + "): ");
+            int targetId = getIntInput();
+            
+            Sentence result = Searcher.binarySearchById(sentences, targetId);
+            
+            if (result == null) {
+                System.out.println("╔═════════════════════════════════════════════╗");
+                System.out.println("║           Kalimat tidak ditemukan           ║");
+                System.out.println("╚══════════════════════╦══════════════════════╝");
+                System.out.println("                       ║");
+                System.out.println("                       v");
+            } else {
+                System.out.println("╔═════════════════════════════════════════════╗");
+                System.out.println("║            Kalimat ditemukan!               ║");
+                System.out.println("╠═════════════════════════════════════════════╝");
+                System.out.println("║ SENT-" + result.id + ": " + result.text);
+                System.out.println("╚══════════════════════╦═══════════════════════");
+                System.out.println("                       ║");
+                System.out.println("                       v");
+            }
+            
+        } else {
+            System.out.println("╔═════════════════════════════════════════════╗");
+            System.out.println("║             Pilihan tidak valid             ║");
+            System.out.println("╚══════════════════════╦══════════════════════╝");
             System.out.println("                       ║");
             System.out.println("                       v");
         }

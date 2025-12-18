@@ -20,7 +20,6 @@ public class Dijkstra {
         runDijkstra();
     }
 
-
     public void resetAllSentences(){
         for(int i = 0; i < sentences.size(); i++){
             Sentence s = (Sentence) sentences.get(i);
@@ -35,7 +34,7 @@ public class Dijkstra {
     private void runDijkstra() {
 
         while (true) {
-           
+            
             Sentence minSentence = null;
             int minDistance = Integer.MAX_VALUE;
             
@@ -126,8 +125,4 @@ public class Dijkstra {
         System.out.println("\nCentrality Score: " + getTotalDistance());
         System.out.println("   (Lower = more central/important)");
     }
-
-
-
-
 }

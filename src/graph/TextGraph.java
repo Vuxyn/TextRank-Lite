@@ -17,8 +17,8 @@ public class TextGraph {
         
         for (int i = 0; i < numNodes; i++) {
             adjacencyList.add(new Linkedlist());
+        }
     }
-}
 
     private void addEdge(int from, int to, int weight) {
         Linkedlist edgeList = (Linkedlist) adjacencyList.get(from);
@@ -31,13 +31,12 @@ public class TextGraph {
         System.out.println("║ Calculating similarities between sentences..║");
         System.out.println("╠═════════════════════════════════════════════╣");
         
-        // Loop untuk setiap pasangan kalimat
         for (int i = 0; i < numNodes; i++) {
             Sentence sentenceI = (Sentence) sentences.get(i);
             
             for (int j = 0; j < numNodes; j++) {
                 if (i == j) {
-                    continue; // Skip self-loop (tidak ada edge ke diri sendiri)
+                    continue; 
                 }
                 
                 Sentence sentenceJ = (Sentence) sentences.get(j);
